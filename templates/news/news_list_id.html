@@ -1,0 +1,9 @@
+{% extends "default.html" %}
+{% load custom_filters %}
+{% block title %}news{% endblock %}
+
+{% block content %}
+    <h1 >{{ news_list_id.title|censor }}</h1>
+    <h1 style="font-size: 15px;">{{ news_list_id.date_of_creation|date:"j F, Y" }}</h1>
+    <h1 style="font-size: 20px;"><span style="font-weight: normal;">{{ news_list_id.text|censor }}</span></h1>
+{% endblock %}

@@ -1,0 +1,45 @@
+1.from news.models import *
+2.User3 = User.objects.create_user('Юлия')
+3.User4 = User.objects.create_user('Владимир')
+4.User3 = Author.objects.create(user=User3)
+5,User4 = Author.objects.create(user=User4)
+6.User4.rating
+7.Category1 = Category.objects.create(name='Мировые новости')
+8.Сategory2 = Category.objects.create(name='Политика')
+9.Category3 = Category.objects.create(name='Путешествия')
+10.Category4 = Category.objects.create(name='Саморазвитие')
+11. Post1 = Post.objects.create(author=User3, post_type='NW', title='В Нью-Йорке зафиксировали землетрясение',
+text='Подземные толчки близ острова Рузвельт-Айленд в центре Нью-Йорка бы
+ли зафиксированы геологической службой США. По их данным, в 05:45 по местному времени произошло землетрясение магнитудой 1,7.
+Его эпицентр располагался на глубине в пять километров.')
+12.Post1.category.add(Category1)
+13.Post2 = Post.objects.create(author=User4, post_type='AR', title='Почему Азия – лучшее направление для отдыха в 2024 году', text='При выборе маршрута для зимнего отдыха мало кому в
+голову приходит Азия. Стоит отметить, что это направление медленно, но верно поднимается в топе отечественных путешественников, но все еще проигрывает той же Турции или Египту. И с одн
+ой стороны, это можно понять, ведь чаще всего на январских каникулах ты хочешь, чтобы тебя обмахивали опахалом, подносили коктейли к бассейну и вкусно кормили по расписанию. Но мы в ре
+дакции уверены, что на каждый запрос найдется подходящая азиатская страна, в которой получится осуществить все свои мечты.')
+14.Post2.category.add(Category3)
+15. Post3 = Post.objects.create(author=User3, post_type='AR', title='Основные современные языки программирования', text='Python Набирающий популярность и активно развивающийся язык про
+граммирования общего назначения. Имеет относительно небольшое количество простых команд, что несомненно делает его синтаксис одним из простейших среди современных языков. Легкость обуч
+ения и большое количество стилей программирования (среди которых структурное, функциональное, объектно-ориентированное, императивное и аспектно-ориентированное) являются несомненными п
+люсами так называемого Питона. Код написанный на Python одним программистом с легкостью читается другими, что облегчает работу с кодом.')
+16.Post3.category.add(Category4)
+17.Post1.category.add(Category3)
+18.User5 = User.objects.create_user('Алла')
+19.Comments1 = Comment.objects.create(comment = Post1, comment_user=User5, comment_text='Интересно')
+20.Comments2 = Comment.objects.create(comment = Post2, comment_user=User5, comment_text='Интересно')
+21.Comments3 = Comment.objects.create(comment = Post3, comment_user=User5, comment_text='Интересно')
+22.like1 = Post.objects.get(pk=1)
+23.like1.like()
+24.like2 = Post.objects.get(pk=1)
+25.like2.like()
+26.like2.dislike()
+27.like3 = Comment.objects.get(pk=1)
+28.like4 = Author.objects.get(pk=2)
+29.like4.like()
+30.author1 = Author.objects.get(pk=1)
+31.author1.update_rating()
+32.author2 = Author.objects.get(pk=2)
+33.author2.update_rating()
+34.best_post = Post.objects.order_by('-rating').first()
+35.best_post.author.user.username
+36.best_post.rating
