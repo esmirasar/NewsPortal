@@ -1,5 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.conf import settings
+from django.core.mail import EmailMessage
+from django.urls import reverse
 
 
 class Author(models.Model):
@@ -26,6 +32,10 @@ class Author(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
+    subscribers = models.ManyToManyField(User, through='Subscription', )
+
+    def __str__(self):
+        return self.name
 
 
 class Post(models.Model):
@@ -62,6 +72,15 @@ class Post(models.Model):
         else:
             return self.articles
 
+    # метод для обрезки текста в шаблон send_mail
+    def get_short_text(self):
+        return self.text[:50]
+
+    @classmethod
+    def get_absolute_url(self):
+        post_url = reverse('post_detail', kwargs={'pk': self.objects.pk})
+        return post_url
+
 
 class PostCategory(models.Model):  # промежуточная модель для category
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -82,3 +101,11 @@ class Comment(models.Model):
     def dislike(self):
         self.comment_rating -= 1
         self.save()
+
+
+class Subscription(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.category.name}"

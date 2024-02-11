@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ValidationError
 import sys
-from .models import Post
+from .models import Category, Post, Subscription
 sys.path.append('..')
 
 
@@ -10,7 +10,9 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['title',
                   'text',
-                  'author']
+                  'author',
+                  'category',
+                  ]
 
     def clean(self):
         cleaned_data = super().clean()
@@ -20,3 +22,17 @@ class PostForm(forms.ModelForm):
         if title == text:
             raise ValidationError('Описание и заголовок не должны быть одинаковыми')
         return cleaned_data
+
+
+#форма, которая позволит пользователям выбирать категории, на которые они хотят подписаться
+
+
+class SubscriptionForm(forms.ModelForm):
+    class Meta:
+        model = Subscription
+        fields = ['category']
+        widgets = {
+            'category': forms.Select,
+        }
+
+

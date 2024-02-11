@@ -1,0 +1,19 @@
+{% extends "default.html" %}
+{% load custom_filters %}
+{% block title %}
+News
+{% endblock title %}
+
+{% block content %}
+<center>
+    <h1>Воспользуйтесь поиском, если вам нужна определенная новость</h1>
+    <p>Общее количество новостей: {{ news_list|length }}</p>
+    {# Добавляем форму, которая объединяет набор полей, которые будут отправляться в запросе #}
+    <form action="" method="get">
+        {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}
+        {{ filterset.form.as_p }}
+        {# Добавим кнопку отправки данных формы #}
+        <input type="submit" value="Найти"/>
+    </form>
+</center>>
+{% endblock content %}

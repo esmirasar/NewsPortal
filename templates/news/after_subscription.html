@@ -1,0 +1,12 @@
+{% extends "default.html" %}
+{% load custom_filters %}
+{% block title %}
+after_subscription
+{% endblock title %}
+
+{% block content %}
+<center>
+   <h1>Поздравляем, Вы стали подписчиком категории. Теперь вы будете узнавать о новостях в числе первых</h1>
+   <a href="{% url 'news_list' %}"><button>Перейти к новостям</button></a>
+</center>
+{% endblock content %}
