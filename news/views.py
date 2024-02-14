@@ -9,7 +9,11 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.db.models.signals import post_save
+import os
+from dotenv import load_dotenv
+from .tasks import email_send
 
+load_dotenv()
 
 
 class NewsListView(ListView):
@@ -54,21 +58,9 @@ class PostCreate(PermissionRequiredMixin, CreateView):
         post = form.save(commit=False)
         post.post_type = 'NW'
         post.save()
-        category_ids = form.cleaned_data.get('category')
-        for categoryi in category_ids:
-            category = Subscription(category_id=categoryi.id, user_id=self.request.user.pk)
-            category.save()
-        for category_id in category_ids:
-            for user in User.objects.filter(subscription__category_id=category_id):
-                html_content = render_to_string('news/send_mail.html', {'post': post})
-                msg = EmailMultiAlternatives(
-                    subject=f'''Приветствуем, {user}! В твоей любимой категории вышла новость:{post.title}''',
-                    from_email='esmirasar@yandex.ru',
-                    body=f'{post.text[:50]}..',
-                    to=[user.email],
-                )
-                msg.attach_alternative(html_content, "text/html")
-                msg.send()
+
+        email_send(self, post, form)
+
         return super().form_valid(form)
 
 
