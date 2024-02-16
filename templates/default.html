@@ -2,11 +2,39 @@
 <html>
 <head>
     <title> NEWS PORTAL </title>
-    <!-- -->
+    <style>
+        header nav {
+            background-color: #f2f2f2; /* Цвет фона меню */
+            padding: 15px; /* Внутренний отступ меню */
+        }
+        header nav ul {
+            list-style-type: none; /* Убираем маркеры у списка */
+            padding: 0;
+            text-align: center; /* Выравниваем ссылки по центру */
+        }
+        header nav ul li {
+            display: inline; /* Размещаем ссылки в одну строку */
+            margin-right: 25px; /* Отступ между ссылками */
+        }
+        header nav ul li:last-child {
+            margin-right: 0; /* Убираем отступ у последней ссылки */
+        }
+        header nav ul li a {
+            text-decoration: none; /* Убираем подчеркивание у ссылок */
+        }
+    </style>
 </head>
 <body>
     <header>
-        <!---->
+        <nav>
+            <ul>
+                <li><a href="/news">Список новостей</a></li>
+                <li><a href="{% url 'news_search' %}">Поиск</a></li>
+                <li><a href="{% url 'post_create' %}">Создать пост</a></li>
+                <li><a href="{% url 'subscribe' %}">Выбрать любимую категорию для оповещений</a></li>
+                <li><a href="{% url 'logout'%}">Выход</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>

@@ -6,15 +6,10 @@ News
 
 {% block content %}
 <center>
+    <p style="font-size: 24px; font-weight: bold;">Cписок новостей</p>
     <p>Общее количество новостей: {{ news_list|length }}</p>
-    <div style="border: 2px solid black; padding: 10px; display: inline-block; margin-top: 10px;">
-        <a href="{% url 'subscribe'%}"> Выбрать любимую категорию для оповещений </a>
-    </div>>
 </center>
-<h1 style="text-align: right;"></h1>
 <hr>
-<h1 style="font-size: 20px;">Cписок новостей</h1>
-
 {% if news_list %}
 <table cellpadding="10" align="center">
     <tr>
