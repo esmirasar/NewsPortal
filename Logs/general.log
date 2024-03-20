@@ -1,0 +1,9 @@
+2024-03-20 15:12:59 INFO: autoreload Watching for file changes with StatReloader
+2024-03-20 15:13:14 WARNING: log Not Found: /
+2024-03-20 15:13:14 WARNING: basehttp "GET / HTTP/1.1" 404 179
+2024-03-20 15:14:26 INFO: autoreload C:\Users\smaka_7ffeimw\OneDrive\Рабочий стол\NewsPortal\news_portal\settings.py changed, reloading.
+2024-03-20 15:14:26 INFO: autoreload Watching for file changes with StatReloader
+2024-03-20 15:19:04 INFO: autoreload C:\Users\smaka_7ffeimw\OneDrive\Рабочий стол\NewsPortal\news_portal\settings.py changed, reloading.
+2024-03-20 15:19:05 INFO: autoreload Watching for file changes with StatReloader
+2024-03-20 15:22:01 INFO: autoreload C:\Users\smaka_7ffeimw\OneDrive\Рабочий стол\NewsPortal\news_portal\settings.py changed, reloading.
+2024-03-20 15:22:02 INFO: autoreload Watching for file changes with StatReloader
